@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\EldoradoEngine.cpp" />
+    <ClCompile Include="src\Utils\Logger.cpp" />
+    <ClCompile Include="src\Functions\EngineFunctions.cpp" />
+    <ClCompile Include="src\Hooks\EngineHooks.cpp" />
+    <ClCompile Include="src\Hooks\SetCurrentLanguage.cpp" />
+    <ClCompile Include="src\Hooks\StartCountdownTimer.cpp" />
+    <ClCompile Include="src\Hooks\CloseGame.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\EldoradoEngine.h" />
+    <ClInclude Include="src\IInit.h" />
+    <ClInclude Include="src\Utils\Logger.h" />
+    <ClInclude Include="src\Functions\EngineFunctions.h" />
+    <ClInclude Include="src\Hooks\EngineHooks.h" />
+    <ClInclude Include="src\HaloEngine.h" />
+  </ItemGroup>
+</Project>
