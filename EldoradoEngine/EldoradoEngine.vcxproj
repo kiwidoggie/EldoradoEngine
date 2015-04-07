@@ -88,9 +88,11 @@
     <ClCompile Include="src\EldoradoEngine.cpp" />
     <ClCompile Include="src\Functions\EngineFunctions.cpp" />
     <ClCompile Include="src\Hooks\CloseGame.cpp" />
+    <ClCompile Include="src\Hooks\DisplayCameraInfo.cpp" />
     <ClCompile Include="src\Hooks\EngineHooks.cpp" />
     <ClCompile Include="src\Hooks\SetCurrentLanguage.cpp" />
     <ClCompile Include="src\Hooks\StartCountdownTimer.cpp" />
+    <ClCompile Include="src\Hooks\Unknown.cpp" />
     <ClCompile Include="src\Utils\Logger.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -43,7 +43,7 @@ void Client::PostInit()
 {
 	WriteLog("Post-Init Stage");
 
-	Patch_MPLoading();
+	//Patch_MPLoading();
 }
 
 void Client::LoadMap(char* p_MapName, Halo::MapType p_Type)

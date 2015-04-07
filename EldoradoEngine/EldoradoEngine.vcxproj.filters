@@ -8,6 +8,8 @@
     <ClCompile Include="src\Hooks\SetCurrentLanguage.cpp" />
     <ClCompile Include="src\Hooks\StartCountdownTimer.cpp" />
     <ClCompile Include="src\Hooks\CloseGame.cpp" />
+    <ClCompile Include="src\Hooks\Unknown.cpp" />
+    <ClCompile Include="src\Hooks\DisplayCameraInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\EldoradoEngine.h" />
