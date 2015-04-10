@@ -10,6 +10,7 @@
     <ClCompile Include="src\Hooks\CloseGame.cpp" />
     <ClCompile Include="src\Hooks\Unknown.cpp" />
     <ClCompile Include="src\Hooks\DisplayCameraInfo.cpp" />
+    <ClCompile Include="src\Hooks\VerifyMapSignature.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\EldoradoEngine.h" />

@@ -9,6 +9,7 @@ EngineHooks::StartCountdownTimer_t EngineHooks::StartCountdownTimer = nullptr;
 EngineHooks::CloseGame_t EngineHooks::CloseGame = nullptr;
 EngineHooks::Unknown_t EngineHooks::Unknown = nullptr;
 EngineHooks::DisplayCameraInfo_t EngineHooks::DisplayCameraInfo = nullptr;
+EngineHooks::VerifyMapSignature_t EngineHooks::VerifyMapSignature = nullptr;
 
 void EngineHooks::Init()
 {
