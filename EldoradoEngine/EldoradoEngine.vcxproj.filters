@@ -11,6 +11,8 @@
     <ClCompile Include="src\Hooks\Unknown.cpp" />
     <ClCompile Include="src\Hooks\DisplayCameraInfo.cpp" />
     <ClCompile Include="src\Hooks\VerifyMapSignature.cpp" />
+    <ClCompile Include="src\Utils\Util.cpp" />
+    <ClCompile Include="src\Utils\Debugging\HWBP.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\EldoradoEngine.h" />
@@ -19,5 +21,9 @@
     <ClInclude Include="src\Functions\EngineFunctions.h" />
     <ClInclude Include="src\Hooks\EngineHooks.h" />
     <ClInclude Include="src\HaloEngine.h" />
+    <ClInclude Include="src\Macros.h" />
+    <ClInclude Include="src\Utils\Util.h" />
+    <ClInclude Include="src\Utils\Debugging\HWBP.h" />
+    <ClInclude Include="src\Utils\Debugging\BitTools.h" />
   </ItemGroup>
 </Project>

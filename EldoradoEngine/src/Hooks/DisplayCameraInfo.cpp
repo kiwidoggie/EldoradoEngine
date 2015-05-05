@@ -3,7 +3,7 @@
 
 using namespace EldoradoEngine::Hooks;
 
-bool __cdecl EngineHooks::hk_DisplayCameraInfo()
-{
-	return true;
-}
+//bool __cdecl EngineHooks::hk_DisplayCameraInfo()
+//{
+//	return true;
+//}

@@ -1,5 +1,6 @@
 #pragma once
 #include <IInit.h>
+#include <Macros.h>
 
 namespace EldoradoEngine
 {
@@ -8,7 +9,7 @@ namespace EldoradoEngine
 		class EngineHooks : IInit
 		{
 		public:
-			typedef void* (__cdecl* SetCurrentLanguage_t)(int p_LanguageIndex);
+			/*typedef void* (__cdecl* SetCurrentLanguage_t)(int p_LanguageIndex);
 			static SetCurrentLanguage_t SetCurrentLanguage;
 			static void* __cdecl hk_SetCurrentLanguage(int p_LanguageIndex);
 
@@ -30,8 +31,10 @@ namespace EldoradoEngine
 
 			typedef bool(__cdecl* VerifyMapSignature_t)(void* a1);
 			static VerifyMapSignature_t VerifyMapSignature;
-			static bool __cdecl hk_VerifyMapSignature(void* a1);
+			static bool __cdecl hk_VerifyMapSignature(void* a1);*/
 
+			DeclareFunction(void*, SetCurrentLanguage, __cdecl, int p_LanguageIndex);
+			DeclareFunction(bool, VerifyMapSignature, __cdecl, void* a1);
 		public:
 			void Init();
 		};

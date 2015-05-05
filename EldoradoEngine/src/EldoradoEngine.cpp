@@ -6,6 +6,11 @@
 #include "Functions/EngineFunctions.h"
 
 using namespace EldoradoEngine;
+using namespace EldoradoEngine::Utils::Debugging;
+
+// TODO: Remove below
+LONG CALLBACK ExceptionHandler(PEXCEPTION_POINTERS ExceptionInfo);
+#define BP_OFFSET 0x012561A4
 
 // Singleton, we only want to have 1 instance of this per game.
 Client* Client::m_Instance = nullptr;
@@ -36,7 +41,18 @@ void Client::PreInit()
 {
 	WriteLog("Pre-Init Stage");
 
-	Patch_CloseGame();
+	PVOID s_Handler = AddVectoredExceptionHandler(1, ExceptionHandler);
+	ZeroMemory(&m_Breakpoint, sizeof(Bp));
+
+	m_Breakpoint.m_TargetAddress = BP_OFFSET;
+	m_Breakpoint.m_Class = BPClass_Hardware;
+	m_Breakpoint.m_Type = BType_ReadWrite;
+	m_Breakpoint.m_Register = DbgReg0;
+	m_Breakpoint.m_Size = BPSize_DWORD;
+
+	HwBp::SetBp(&m_Breakpoint);
+
+	//Patch_CloseGame();
 }
 
 void Client::PostInit()
@@ -89,7 +105,7 @@ DWORD WINAPI ClientInit(LPVOID)
 	// Shitty ass button hooks
 	for (;;)
 	{
-		if (GetAsyncKeyState(VK_F2) & 0x8000)
+		/*if (GetAsyncKeyState(VK_F2) & 0x8000)
 		{
 			WriteLog("Force-loading Guardian...");
 			Client::Inst()->LoadMap("maps\\guardian.map", Halo::MapType_Multiplayer);
@@ -130,7 +146,7 @@ DWORD WINAPI ClientInit(LPVOID)
 			WriteLog("Force-loading mainmenu...");
 			Client::Inst()->LoadMap("maps\\mainmenu.map", (Halo::MapType)0);
 			Sleep(100);
-		}
+		}*/
 		Sleep(200);
 	}
 	return 0;
@@ -142,4 +158,38 @@ BOOL WINAPI DllMain(HMODULE p_Module, DWORD p_Reason, LPVOID p_Reserved)
 		CreateThread(0, 0, ClientInit, 0, 0, 0);
 
 	return TRUE;
+}
+
+LONG CALLBACK ExceptionHandler(PEXCEPTION_POINTERS ExceptionInfo)
+{
+	DWORD exceptionCode = ExceptionInfo->ExceptionRecord->ExceptionCode;
+
+	if (!(exceptionCode == EXCEPTION_BREAKPOINT ||
+		exceptionCode == EXCEPTION_SINGLE_STEP))
+	{
+		if ((DWORD)ExceptionInfo->ExceptionRecord->ExceptionAddress == (DWORD)BP_OFFSET)
+			WriteLog("Exception Hit");
+
+		//WriteLog("Exception which is not caused by a breakpoint has occured, passing exception to next handler.");
+		return EXCEPTION_CONTINUE_SEARCH;
+	}
+
+	
+	if ((DWORD)ExceptionInfo->ExceptionRecord->ExceptionAddress == (DWORD)BP_OFFSET)
+	{
+		WriteLog("Exception Address: %x", ExceptionInfo->ExceptionRecord->ExceptionAddress);
+		WriteLog("ExceptionCode: %x", exceptionCode);
+
+		HwBp::RestoreBp(&Client::Inst()->m_Breakpoint);
+		HwBp::RestoreHwBpContext(&Client::Inst()->m_Breakpoint, *ExceptionInfo->ContextRecord);
+
+		WriteLog("Writing value back.");
+		*(unsigned int*)BP_OFFSET = 0;
+
+		//ExceptionInfo->ContextRecord->Eip = (DWORD)exampleFunctionTwo;
+		HwBp::SetBp(&Client::Inst()->m_Breakpoint);
+
+		return EXCEPTION_CONTINUE_EXECUTION;
+	}
+	return EXCEPTION_CONTINUE_SEARCH;
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include <IInit.h>
 #include <HaloEngine.h>
+#include <Utils/Debugging/HWBP.h>
 
 namespace EldoradoEngine
 {
@@ -11,9 +12,11 @@ namespace EldoradoEngine
 
 		IInit* m_EngineHooks;
 		IInit* m_EngineFunctions;
+		
 
 	public:
 		static Client* Inst();
+		Utils::Debugging::Bp m_Breakpoint;
 
 	public:
 

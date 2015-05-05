@@ -56,6 +56,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;ELDORADOENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(ProjectDir)/src;$(ProjectDir)/depends/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PreprocessToFile>false</PreprocessToFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -94,7 +95,9 @@
     <ClCompile Include="src\Hooks\StartCountdownTimer.cpp" />
     <ClCompile Include="src\Hooks\Unknown.cpp" />
     <ClCompile Include="src\Hooks\VerifyMapSignature.cpp" />
+    <ClCompile Include="src\Utils\Debugging\HWBP.cpp" />
     <ClCompile Include="src\Utils\Logger.cpp" />
+    <ClCompile Include="src\Utils\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\EldoradoEngine.h" />
@@ -102,7 +105,11 @@
     <ClInclude Include="src\HaloEngine.h" />
     <ClInclude Include="src\Hooks\EngineHooks.h" />
     <ClInclude Include="src\IInit.h" />
+    <ClInclude Include="src\Macros.h" />
+    <ClInclude Include="src\Utils\Debugging\BitTools.h" />
+    <ClInclude Include="src\Utils\Debugging\HWBP.h" />
     <ClInclude Include="src\Utils\Logger.h" />
+    <ClInclude Include="src\Utils\Util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
